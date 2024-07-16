@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/main/configuration-schema.json
+package: v1
+output: pkg/v1/novaclient.gen.go
+generate:
+  models: true
+  client: true
+# wandelengine uses the anyof type which is not supported by the openapi generator for now. 
+# see https://github.com/oapi-codegen/oapi-codegen/issues/373
+output-options:
+  exclude-tags:
+    - Internal Wandelengine
+    - Program
+    - ProgramValues
+  exclude-schemas:
+    # anyof not supported 
+    #  error generating Go schema for property 'initial_state': 
+    #  error generating type for anyOf: error resolving primitive type: unhandled Schema type: &[null]
+    - CodeWithArguments
+    - ProgramRun
+    - RobotState
+    - pyriphery__pyrae__robot__Robot__Configuration
+    #  x-go-name required because duplicates
+    - CoordinateSystem
+    - IO
+  exclude-operation-ids:
+    # fails with error '_' must separate successive digits (and 1 more errors)
+    - listDevices
+    - listProgramsValues
+  # otherwise models would be generated additionally
+  # see https://github.com/oapi-codegen/oapi-codegen/issues/1450
+  response-type-suffix: Resp
