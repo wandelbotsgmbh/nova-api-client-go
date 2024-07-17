@@ -1,2 +1,2 @@
 # client-go
-Client API for Wandelbots Nova
+Client API for Wandelbots
