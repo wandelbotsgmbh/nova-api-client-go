@@ -4,7 +4,7 @@ A simple client for the [Wandelbots Nova](https://www.wandelbots.com/) API.
 
 ## basic usage
 
-This Examples will list all available controllers and prints their joint configurations.
+This Example will list all available controllers and print their joint configurations.
 ```golang
 package main
 
